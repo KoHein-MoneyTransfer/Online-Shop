@@ -1,4 +1,4 @@
-body {
+Body {
     font-family: 'Poppins', sans-serif;
     background-color: #f0f2f5;
     color: #333;
@@ -224,4 +224,78 @@ main {
 
 .back-btn:hover {
     background-color: #e0e0e0;
+}
+
+/* New styles for the app download section */
+.app-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin: 20px 0;
+}
+
+.app-btn {
+    display: flex;
+    align-items: center;
+    padding: 12px 20px;
+    background-color: #f1f1f1;
+    color: #333;
+    border-radius: 50px;
+    text-decoration: none;
+    font-weight: 600;
+    transition: background-color 0.3s ease;
+}
+
+.app-btn:hover {
+    background-color: #e0e0e0;
+}
+
+.app-btn i {
+    font-size: 1.5em;
+    margin-right: 10px;
+}
+
+.copy-link-text {
+    text-align: center;
+    color: #666;
+    margin: 20px 0 10px;
+}
+
+.copy-link-container {
+    display: flex;
+    gap: 5px;
+}
+
+.copy-link-container input {
+    flex-grow: 1;
+    background-color: #fff;
+}
+
+.copy-link-container button {
+    padding: 10px 15px;
+    border: 1px solid #ccc;
+    background-color: #e9ecef;
+    color: #555;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 1em;
+}
+
+.copy-link-container button:hover {
+    background-color: #ddd;
+}
+
+.next-btn {
+    display: block;
+    width: 100%;
+    padding: 15px;
+    margin-top: 30px;
+    border: none;
+    background-color: #007bff;
+    color: white;
+    border-radius: 50px;
+    cursor: pointer;
+    font-size: 1.2em;
+    font-weight: 600;
+    transition: background-color 0.3s ease;
 }
