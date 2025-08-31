@@ -45,9 +45,29 @@
         <div id="vpn-page" class="page-section hidden">
             <h2 class="section-title">VPN Key ဝယ်ယူရန်</h2>
             <div class="choice-buttons">
-                <button class="choice-btn" onclick="showForm('vpn-new-user')">New User</button>
+                <button class="choice-btn" onclick="showAppDownload()">New User</button>
                 <button class="choice-btn" onclick="showForm('vpn-renew-user')">Key သက်တမ်းတိုး</button>
             </div>
+            
+            <div id="vpn-app-download" class="order-form hidden">
+                <h3>VPN App ရယူရန်</h3>
+                <p>အသုံးပြုမည့် ဖုန်းအမျိုးအစားအလိုက် ရွေးချယ်နိုင်ပါသည်</p>
+                <div class="app-buttons">
+                    <a href="https://play.google.com/store/apps/details?id=com.v2ray.ang" target="_blank" class="app-btn">
+                        <i class="fab fa-google-play"></i> Android
+                    </a>
+                    <a href="https://apps.apple.com/us/app/shadowrocket/id932747118" target="_blank" class="app-btn">
+                        <i class="fab fa-app-store-ios"></i> iOS
+                    </a>
+                </div>
+                <p class="copy-link-text">သို့မဟုတ်၊ အောက်ပါ link ကို copy ယူ၍ download ရယူနိုင်သည်</p>
+                <div class="copy-link-container">
+                    <input type="text" id="vpn-download-link" value="https://example.com/vpn-app" readonly>
+                    <button onclick="copyLink('vpn-download-link')"><i class="fas fa-copy"></i> Copy</button>
+                </div>
+                <button class="next-btn" onclick="showForm('vpn-new-user')">ဆက်လက်ဝယ်ယူရန်</button>
+            </div>
+
             <form id="vpn-new-user-form" class="order-form hidden">
                 <h3>New User အချက်အလက်</h3>
                 <label for="vpn-username">အသုံးပြုသူနာမည်:</label>
@@ -103,16 +123,142 @@
                 <div class="grid-item" onclick="showPage('flexinet-page')">
                     <h3><i class="fas fa-atom"></i> Atom FlexiNet</h3>
                 </div>
-                <div class="grid-item coming-soon">
-                    <h3><i class="fas fa-mobile-alt"></i> Ooredoo Supenet Lite</h3>
+                <div class="grid-item" onclick="showPage('mobile-data-page')">
+                    <h3><i class="fas fa-sim-card"></i> Mobile Data Plan</h3>
                 </div>
                 <div class="grid-item coming-soon">
-                    <h3><i class="fas fa-sim-card"></i> Mobile Data Plan</h3>
+                    <h3><i class="fas fa-mobile-alt"></i> Ooredoo Supenet Lite</h3>
                 </div>
             </div>
             <button class="back-btn" onclick="showPage('home-page')">နောက်သို့</button>
         </div>
 
+        <div id="mobile-data-page" class="page-section hidden">
+            <h2 class="section-title">Mobile Data Plan</h2>
+            <div class="grid-container">
+                <div class="grid-item" onclick="showDataForm('atom-data')">
+                    <h3><i class="fas fa-atom"></i> Atom</h3>
+                </div>
+                <div class="grid-item" onclick="showDataForm('mpt-data')">
+                    <h3><i class="fas fa-mobile-alt"></i> MPT</h3>
+                </div>
+                <div class="grid-item" onclick="showDataForm('mytel-data')">
+                    <h3><i class="fas fa-sim-card"></i> Mytel</h3>
+                </div>
+                <div class="grid-item" onclick="showDataForm('ooredoo-data')">
+                    <h3><i class="fas fa-wifi"></i> Ooredoo</h3>
+                </div>
+            </div>
+            <button class="back-btn" onclick="showPage('data-page')">နောက်သို့</button>
+        </div>
+
+        <div id="data-forms" class="page-section hidden">
+            <form id="atom-data-form" class="order-form hidden">
+                <h3>Atom Data Plan</h3>
+                <label for="atom-user">အမည်:</label>
+                <input type="text" id="atom-user" required>
+                <label for="atom-phone">Dataထည့်မည့်ဖုန်းနံပါတ်:</label>
+                <input type="tel" id="atom-phone" pattern="[0-9]{9,11}" required>
+                <label for="atom-plan">ပက်ကေ့အမျိုးအစား:</label>
+                <select id="atom-plan" required>
+                    <option value="">ရွေးချယ်ပါ</option>
+                    <option value="15GB=15000Ks">15GB (15,000 Ks)</option>
+                    <option value="25GB=25000Ks">25GB (25,000 Ks)</option>
+                </select>
+                <label for="atom-payment-method">ငွေပေးချေရန်:</label>
+                <select id="atom-payment-method" required>
+                    <option value="">ရွေးချယ်ပါ</option>
+                    <option value="KBZ Pay">KBZ Pay</option>
+                    <option value="Wave Money">Wave Money</option>
+                </select>
+                <p id="atom-payment-details" class="payment-details"></p>
+                <label for="atom-transfer-id">ငွေလွှဲ ID နောက်ဆုံး ၅ လုံး:</label>
+                <input type="text" id="atom-transfer-id" maxlength="5" required>
+                <label for="atom-contact">ဆက်သွယ်ရန်:</label>
+                <input type="text" id="atom-contact" placeholder="Viber/Telegram" required>
+                <button type="submit">Order တင်ရန်</button>
+            </form>
+
+            <form id="mpt-data-form" class="order-form hidden">
+                <h3>MPT Data Plan</h3>
+                <label for="mpt-user">အမည်:</label>
+                <input type="text" id="mpt-user" required>
+                <label for="mpt-phone">Dataထည့်မည့်ဖုန်းနံပါတ်:</label>
+                <input type="tel" id="mpt-phone" pattern="[0-9]{9,11}" required>
+                <label for="mpt-plan">ပက်ကေ့အမျိုးအစား:</label>
+                <select id="mpt-plan" required>
+                    <option value="">ရွေးချယ်ပါ</option>
+                    <option value="15GB=15000Ks">15GB (15,000 Ks)</option>
+                    <option value="25GB=25000Ks">25GB (25,000 Ks)</option>
+                </select>
+                <label for="mpt-payment-method">ငွေပေးချေရန်:</label>
+                <select id="mpt-payment-method" required>
+                    <option value="">ရွေးချယ်ပါ</option>
+                    <option value="KBZ Pay">KBZ Pay</option>
+                    <option value="Wave Money">Wave Money</option>
+                </select>
+                <p id="mpt-payment-details" class="payment-details"></p>
+                <label for="mpt-transfer-id">ငွေလွှဲ ID နောက်ဆုံး ၅ လုံး:</label>
+                <input type="text" id="mpt-transfer-id" maxlength="5" required>
+                <label for="mpt-contact">ဆက်သွယ်ရန်:</label>
+                <input type="text" id="mpt-contact" placeholder="Viber/Telegram" required>
+                <button type="submit">Order တင်ရန်</button>
+            </form>
+            
+            <form id="mytel-data-form" class="order-form hidden">
+                <h3>Mytel Data Plan</h3>
+                <label for="mytel-user">အမည်:</label>
+                <input type="text" id="mytel-user" required>
+                <label for="mytel-phone">Dataထည့်မည့်ဖုန်းနံပါတ်:</label>
+                <input type="tel" id="mytel-phone" pattern="[0-9]{9,11}" required>
+                <label for="mytel-plan">ပက်ကေ့အမျိုးအစား:</label>
+                <select id="mytel-plan" required>
+                    <option value="">ရွေးချယ်ပါ</option>
+                    <option value="15GB=15000Ks">15GB (15,000 Ks)</option>
+                    <option value="25GB=25000Ks">25GB (25,000 Ks)</option>
+                </select>
+                <label for="mytel-payment-method">ငွေပေးချေရန်:</label>
+                <select id="mytel-payment-method" required>
+                    <option value="">ရွေးချယ်ပါ</option>
+                    <option value="KBZ Pay">KBZ Pay</option>
+                    <option value="Wave Money">Wave Money</option>
+                </select>
+                <p id="mytel-payment-details" class="payment-details"></p>
+                <label for="mytel-transfer-id">ငွေလွှဲ ID နောက်ဆုံး ၅ လုံး:</label>
+                <input type="text" id="mytel-transfer-id" maxlength="5" required>
+                <label for="mytel-contact">ဆက်သွယ်ရန်:</label>
+                <input type="text" id="mytel-contact" placeholder="Viber/Telegram" required>
+                <button type="submit">Order တင်ရန်</button>
+            </form>
+
+            <form id="ooredoo-data-form" class="order-form hidden">
+                <h3>Ooredoo Data Plan</h3>
+                <label for="ooredoo-user">အမည်:</label>
+                <input type="text" id="ooredoo-user" required>
+                <label for="ooredoo-phone">Dataထည့်မည့်ဖုန်းနံပါတ်:</label>
+                <input type="tel" id="ooredoo-phone" pattern="[0-9]{9,11}" required>
+                <label for="ooredoo-plan">ပက်ကေ့အမျိုးအစား:</label>
+                <select id="ooredoo-plan" required>
+                    <option value="">ရွေးချယ်ပါ</option>
+                    <option value="15GB=15000Ks">15GB (15,000 Ks)</option>
+                    <option value="25GB=25000Ks">25GB (25,000 Ks)</option>
+                </select>
+                <label for="ooredoo-payment-method">ငွေပေးချေရန်:</label>
+                <select id="ooredoo-payment-method" required>
+                    <option value="">ရွေးချယ်ပါ</option>
+                    <option value="KBZ Pay">KBZ Pay</option>
+                    <option value="Wave Money">Wave Money</option>
+                </select>
+                <p id="ooredoo-payment-details" class="payment-details"></p>
+                <label for="ooredoo-transfer-id">ငွေလွှဲ ID နောက်ဆုံး ၅ လုံး:</label>
+                <input type="text" id="ooredoo-transfer-id" maxlength="5" required>
+                <label for="ooredoo-contact">ဆက်သွယ်ရန်:</label>
+                <input type="text" id="ooredoo-contact" placeholder="Viber/Telegram" required>
+                <button type="submit">Order တင်ရန်</button>
+            </form>
+            <button class="back-btn" onclick="showPage('mobile-data-page')">နောက်သို့</button>
+        </div>
+        
         <div id="flexinet-page" class="page-section hidden">
             <h2 class="section-title">Atom FlexiNet</h2>
             <div class="choice-buttons">
