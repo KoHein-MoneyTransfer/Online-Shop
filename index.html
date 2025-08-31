@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="my">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Eshop Service</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+</head>
+<body>
+
+    <header>
+        <img src="https://raw.githubusercontent.com/KoHein-MoneyTransfer/images/refs/heads/main/signboard.png" alt="Eshop Myanmar" class="logo">
+        <p>သင်လိုချင်သော ဝန်ဆောင်မှုများကို အလွယ်တကူရယူလိုက်ပါ</p>
+    </header>
+
+    <main>
+        <div id="home-page" class="page-section">
+            <h2 class="section-title">ကျွန်ုပ်တို့၏ ဝန်ဆောင်မှုများ</h2>
+            <div class="grid-container">
+                <div class="grid-item" onclick="showPage('vpn-page')">
+                    <h3><i class="fas fa-key"></i> VPN Key ဝယ်ယူရန်</h3>
+                </div>
+                <div class="grid-item" onclick="showPage('data-page')">
+                    <h3><i class="fas fa-wifi"></i> Data Plan ဝယ်ယူရန်</h3>
+                </div>
+                <div class="grid-item coming-soon">
+                    <h3><i class="fas fa-exchange-alt"></i> ငွေထုတ် / ငွေလွှဲ</h3>
+                </div>
+                <div class="grid-item coming-soon">
+                    <h3><i class="fas fa-broadcast-tower"></i> Wireless သက်တမ်းတိုး</h3>
+                </div>
+                <div class="grid-item coming-soon">
+                    <h3><i class="fas fa-home"></i> FTTH Wifi သက်တမ်းတိုး</h3>
+                </div>
+                <div class="grid-item coming-soon">
+                    <h3><i class="fas fa-tv"></i> ရုပ်သံလိုင်း သက်တမ်းတိုး</h3>
+                </div>
+            </div>
+        </div>
+
+        <div id="vpn-page" class="page-section hidden">
+            <h2 class="section-title">VPN Key ဝယ်ယူရန်</h2>
+            <div class="choice-buttons">
+                <button class="choice-btn" onclick="showForm('vpn-new-user')">New User</button>
+                <button class="choice-btn" onclick="showForm('vpn-renew-user')">Key သက်တမ်းတိုး</button>
+            </div>
+            <form id="vpn-new-user-form" class="order-form hidden">
+                <h3>New User အချက်အလက်</h3>
+                <label for="vpn-username">အသုံးပြုသူနာမည်:</label>
+                <input type="text" id="vpn-username" placeholder="ဥပမာ: user123" required>
+                <label for="vpn-months">သက်တမ်းတိုးမည့်လ:</label>
+                <select id="vpn-months" required>
+                    <option value="">ရွေးချယ်ပါ</option>
+                    <option value="1">၁ လ (၄,၀၀၀)</option>
+                    <option value="3">၃ လ (၁၀,၀၀၀)</option>
+                </select>
+                <label for="vpn-new-payment-method">ငွေပေးချေရန်:</label>
+                <select id="vpn-new-payment-method" required>
+                    <option value="">ရွေးချယ်ပါ</option>
+                    <option value="KBZ Pay">KBZ Pay</option>
+                    <option value="Wave Money">Wave Money</option>
+                </select>
+                <p id="vpn-new-payment-details" class="payment-details"></p>
+                <label for="vpn-new-transfer-id">ငွေလွှဲ ID နောက်ဆုံး ၅ လုံး:</label>
+                <input type="text" id="vpn-new-transfer-id" maxlength="5" placeholder="ဥပမာ: F72B9" required>
+                <label for="vpn-new-contact">ဆက်သွယ်ရန်:</label>
+                <input type="text" id="vpn-new-contact" placeholder="Viber/Telegram နာမည်" required>
+                <button type="submit">Order တင်ရန်</button>
+            </form>
+            <form id="vpn-renew-user-form" class="order-form hidden">
+                <h3>Key သက်တမ်းတိုး အချက်အလက်</h3>
+                <label for="vpn-renew-username">အသုံးပြုသူအမည်:</label>
+                <input type="text" id="vpn-renew-username" placeholder="ဥပမာ: user123" required>
+                <label for="vpn-renew-months">သက်တမ်းတိုးမည့်လ:</label>
+                <select id="vpn-renew-months" required>
+                    <option value="">ရွေးချယ်ပါ</option>
+                    <option value="1">၁ လ (၄,၀၀၀)</option>
+                    <option value="3">၃ လ (၁၀,၀၀၀)</option>
+                </select>
+                <label for="vpn-renew-payment-method">ငွေပေးချေရန်:</label>
+                <select id="vpn-renew-payment-method" required>
+                    <option value="">ရွေးချယ်ပါ</option>
+                    <option value="KBZ Pay">KBZ Pay</option>
+                    <option value="Wave Money">Wave Money</option>
+                </select>
+                <p id="vpn-renew-payment-details" class="payment-details"></p>
+                <label for="vpn-renew-transfer-id">ငွေလွှဲ ID နောက်ဆုံး ၅ လုံး:</label>
+                <input type="text" id="vpn-renew-transfer-id" maxlength="5" placeholder="ဥပမာ: A12CD" required>
+                <label for="vpn-renew-contact">ဆက်သွယ်ရန်:</label>
+                <input type="text" id="vpn-renew-contact" placeholder="Viber/Telegram နာမည်" required>
+                <button type="submit">Order တင်ရန်</button>
+            </form>
+            <button class="back-btn" onclick="showPage('home-page')">နောက်သို့</button>
+        </div>
+
+        <div id="data-page" class="page-section hidden">
+            <h2 class="section-title">Data Plan ဝယ်ယူရန်</h2>
+            <div class="grid-container">
+                <div class="grid-item" onclick="showPage('flexinet-page')">
+                    <h3><i class="fas fa-atom"></i> Atom FlexiNet</h3>
+                </div>
+                <div class="grid-item coming-soon">
+                    <h3><i class="fas fa-mobile-alt"></i> Ooredoo Supenet Lite</h3>
+                </div>
+                <div class="grid-item coming-soon">
+                    <h3><i class="fas fa-sim-card"></i> Mobile Data Plan</h3>
+                </div>
+            </div>
+            <button class="back-btn" onclick="showPage('home-page')">နောက်သို့</button>
+        </div>
+
+        <div id="flexinet-page" class="page-section hidden">
+            <h2 class="section-title">Atom FlexiNet</h2>
+            <div class="choice-buttons">
+                <button class="choice-btn" onclick="showForm('flexinet-new')">ကတ်အသစ်ဝယ်ယူရန်</button>
+                <button class="choice-btn" onclick="showForm('flexinet-renew')">သက်တမ်းတိုးရန်</button>
+            </div>
+            
+            <form id="flexinet-new-form" class="order-form hidden">
+                <h3>FlexiNet ကတ်အသစ်ဝယ်ယူရန် <span class="price-tag">55,000 Ks</span></h3>
+                <label for="flexinet-new-user">အသုံးပြုသူနာမည်:</label>
+                <input type="text" id="flexinet-new-user" placeholder="နာမည်အပြည့်အစုံ" required>
+                
+                <label for="flexinet-new-phone">Register လုပ်ရန် ဖုန်းနံပါတ်:</label>
+                <input type="tel" id="flexinet-new-phone" pattern="[0-9]{9,11}" placeholder="ဥပမာ: 09XXXXXXXXX" required>
+                
+                <label for="latitude">လတ္တီကျု (Latitude):</label>
+                <input type="text" id="latitude" placeholder="ဥပမာ: 16.8409 (မထည့်လည်းရပါသည်)">
+                
+                <label for="longitude">လောင်တီကျု (Longitude):</label>
+                <input type="text" id="longitude" placeholder="ဥပမာ: 96.1735 (မထည့်လည်းရပါသည်)">
+                
+                <label for="flexinet-new-address">ပို့ပေးရမည့်လိပ်စာအပြည့်အစုံ:</label>
+                <textarea id="flexinet-new-address" rows="3" required></textarea>
+                
+                <label for="flexinet-new-payment-method">ငွေပေးချေရန်:</label>
+                <select id="flexinet-new-payment-method" required>
+                    <option value="">ရွေးချယ်ပါ</option>
+                    <option value="KBZ Pay">KBZ Pay</option>
+                    <option value="Wave Money">Wave Money</option>
+                </select>
+                <p id="flexinet-new-payment-details" class="payment-details"></p>
+
+                <label for="flexinet-new-transfer-id">ငွေလွှဲ ID နောက်ဆုံး ၅ လုံး:</label>
+                <input type="text" id="flexinet-new-transfer-id" maxlength="5" placeholder="ဥပမာ: E12F4" required>
+                
+                <label for="flexinet-new-contact">ဆက်သွယ်ရန်:</label>
+                <input type="text" id="flexinet-new-contact" placeholder="Viber/Telegram" required>
+                
+                <button type="submit">Order တင်ရန်</button>
+            </form>
+
+            <form id="flexinet-renew-form" class="order-form hidden">
+                <h3>FlexiNet သက်တမ်းတိုးရန်</h3>
+                <label for="flexinet-renew-user">အသုံးပြုသူနာမည်:</label>
+                <input type="text" id="flexinet-renew-user" placeholder="နာမည်အပြည့်အစုံ" required>
+                
+                <label for="flexinet-renew-phone">Register လုပ်ရန် ဖုန်းနံပါတ်:</label>
+                <input type="tel" id="flexinet-renew-phone" pattern="[0-9]{9,11}" placeholder="ဥပမာ: 09XXXXXXXXX" required>
+
+                <label for="byod-number">BYOD နံပါတ်:</label>
+                <input type="text" id="byod-number" placeholder="ဥပမာ: BYOD123456" required>
+                
+                <label for="flexinet-renew-plan">Plan အမျိုးအစား:</label>
+                <select id="flexinet-renew-plan" required>
+                    <option value="">ရွေးချယ်ပါ</option>
+                    <option value="15GB">15GB (5,000 Ks)</option>
+                    <option value="35GB">35GB (10,000 Ks)</option>
+                    <option value="55GB">55GB (15,000 Ks)</option>
+                </select>
+
+                <label for="flexinet-renew-payment-method">ငွေပေးချေရန်:</label>
+                <select id="flexinet-renew-payment-method" required>
+                    <option value="">ရွေးချယ်ပါ</option>
+                    <option value="KBZ Pay">KBZ Pay</option>
+                    <option value="Wave Money">Wave Money</option>
+                </select>
+                <p id="flexinet-renew-payment-details" class="payment-details"></p>
+
+                <label for="flexinet-renew-transfer-id">ငွေလွှဲ ID နောက်ဆုံး ၅ လုံး:</label>
+                <input type="text" id="flexinet-renew-transfer-id" maxlength="5" placeholder="ဥပမာ: E12F4" required>
+                
+                <label for="flexinet-renew-contact">ဆက်သွယ်ရန်:</label>
+                <input type="text" id="flexinet-renew-contact" placeholder="Viber/Telegram" required>
+                
+                <button type="submit">Order တင်ရန်</button>
+            </form>
+            <button class="back-btn" onclick="showPage('data-page')">နောက်သို့</button>
+        </div>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html>
