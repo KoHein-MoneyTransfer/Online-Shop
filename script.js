@@ -6,6 +6,14 @@ function showPage(pageId) {
     document.getElementById(pageId).classList.remove('hidden');
 }
 
+// Function to show the app download options for new VPN users
+function showAppDownload() {
+    document.querySelectorAll('.order-form').forEach(form => {
+        form.classList.add('hidden');
+    });
+    document.getElementById('vpn-app-download').classList.remove('hidden');
+}
+
 // Function to show/hide specific forms within pages
 function showForm(formType) {
     document.querySelectorAll('.order-form').forEach(form => {
@@ -27,6 +35,25 @@ function showForm(formType) {
         default:
             break;
     }
+}
+
+// New function for showing Mobile Data Plan forms
+function showDataForm(operatorId) {
+    document.querySelectorAll('.order-form').forEach(form => {
+        form.classList.add('hidden');
+    });
+    document.getElementById(operatorId + '-form').classList.remove('hidden');
+    showPage('data-forms');
+}
+
+
+// Function to copy the download link
+function copyLink(elementId) {
+    const copyText = document.getElementById(elementId);
+    copyText.select();
+    copyText.setSelectionRange(0, 99999); // For mobile devices
+    document.execCommand("copy");
+    alert("လင့်ခ်ကို ကူးယူပြီးပါပြီ။");
 }
 
 // Payment details with receiver names
@@ -54,6 +81,26 @@ document.getElementById('flexinet-new-payment-method').addEventListener('change'
 document.getElementById('flexinet-renew-payment-method').addEventListener('change', function() {
     const selectedMethod = this.value;
     const details = document.getElementById('flexinet-renew-payment-details');
+    details.textContent = selectedMethod ? `${selectedMethod}: ${paymentDetails[selectedMethod]}` : '';
+});
+document.getElementById('atom-payment-method').addEventListener('change', function() {
+    const selectedMethod = this.value;
+    const details = document.getElementById('atom-payment-details');
+    details.textContent = selectedMethod ? `${selectedMethod}: ${paymentDetails[selectedMethod]}` : '';
+});
+document.getElementById('mpt-payment-method').addEventListener('change', function() {
+    const selectedMethod = this.value;
+    const details = document.getElementById('mpt-payment-details');
+    details.textContent = selectedMethod ? `${selectedMethod}: ${paymentDetails[selectedMethod]}` : '';
+});
+document.getElementById('mytel-payment-method').addEventListener('change', function() {
+    const selectedMethod = this.value;
+    const details = document.getElementById('mytel-payment-details');
+    details.textContent = selectedMethod ? `${selectedMethod}: ${paymentDetails[selectedMethod]}` : '';
+});
+document.getElementById('ooredoo-payment-method').addEventListener('change', function() {
+    const selectedMethod = this.value;
+    const details = document.getElementById('ooredoo-payment-details');
     details.textContent = selectedMethod ? `${selectedMethod}: ${paymentDetails[selectedMethod]}` : '';
 });
 
@@ -132,13 +179,85 @@ document.querySelectorAll('form').forEach(form => {
 - လွှဲငွေ ID: ${transferId}
 - ဆက်သွယ်ရန်: ${contact}
 `;
+        } else if (this.id === 'atom-data-form') {
+            const username = document.getElementById('atom-user').value;
+            const phone = document.getElementById('atom-phone').value;
+            const plan = document.getElementById('atom-plan').value;
+            const paymentMethod = document.getElementById('atom-payment-method').value;
+            const transferId = document.getElementById('atom-transfer-id').value;
+            const contact = document.getElementById('atom-contact').value;
+            message = `
+*Atom Data Plan အော်ဒါ*
+--------------------
+- အမည်: ${username}
+- ဖုန်းနံပါတ်: ${phone}
+- Plan: ${plan}
+- ငွေပေးချေမှု: ${paymentMethod}
+- လွှဲငွေ ID: ${transferId}
+- ဆက်သွယ်ရန်: ${contact}
+`;
+        } else if (this.id === 'mpt-data-form') {
+            const username = document.getElementById('mpt-user').value;
+            const phone = document.getElementById('mpt-phone').value;
+            const plan = document.getElementById('mpt-plan').value;
+            const paymentMethod = document.getElementById('mpt-payment-method').value;
+            const transferId = document.getElementById('mpt-transfer-id').value;
+            const contact = document.getElementById('mpt-contact').value;
+            message = `
+*MPT Data Plan အော်ဒါ*
+--------------------
+- အမည်: ${username}
+- ဖုန်းနံပါတ်: ${phone}
+- Plan: ${plan}
+- ငွေပေးချေမှု: ${paymentMethod}
+- လွှဲငွေ ID: ${transferId}
+- ဆက်သွယ်ရန်: ${contact}
+`;
+        } else if (this.id === 'mytel-data-form') {
+            const username = document.getElementById('mytel-user').value;
+            const phone = document.getElementById('mytel-phone').value;
+            const plan = document.getElementById('mytel-plan').value;
+            const paymentMethod = document.getElementById('mytel-payment-method').value;
+            const transferId = document.getElementById('mytel-transfer-id').value;
+            const contact = document.getElementById('mytel-contact').value;
+            message = `
+*Mytel Data Plan အော်ဒါ*
+--------------------
+- အမည်: ${username}
+- ဖုန်းနံပါတ်: ${phone}
+- Plan: ${plan}
+- ငွေပေးချေမှု: ${paymentMethod}
+- လွှဲငွေ ID: ${transferId}
+- ဆက်သွယ်ရန်: ${contact}
+`;
+        } else if (this.id === 'ooredoo-data-form') {
+            const username = document.getElementById('ooredoo-user').value;
+            const phone = document.getElementById('ooredoo-phone').value;
+            const plan = document.getElementById('ooredoo-plan').value;
+            const paymentMethod = document.getElementById('ooredoo-payment-method').value;
+            const transferId = document.getElementById('ooredoo-transfer-id').value;
+            const contact = document.getElementById('ooredoo-contact').value;
+            message = `
+*Ooredoo Data Plan အော်ဒါ*
+--------------------
+- အမည်: ${username}
+- ဖုန်းနံပါတ်: ${phone}
+- Plan: ${plan}
+- ငွေပေးချေမှု: ${paymentMethod}
+- လွှဲငွေ ID: ${transferId}
+- ဆက်သွယ်ရန်: ${contact}
+`;
         }
+
         sendToTelegram(message);
     });
 });
 
 // Function to send a message to a Telegram Bot
 function sendToTelegram(message) {
+    // Note: Placing your BOT_TOKEN and CHAT_ID here is for demonstration purposes.
+    // For a real-world application, it's recommended to handle this on a backend server
+    // for security reasons.
     const BOT_TOKEN = '8248149143:AAE0L0QEHDOyVknrMoxOSKbVq45zTrkf2Fg';
     const CHAT_ID = '1658902231';
     const url = `https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`;
