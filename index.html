@@ -22,7 +22,7 @@
             <h2 class="section-title">ကျွန်ုပ်တို့၏ ဝန်ဆောင်မှုများ</h2>
             <div class="grid-container">
                 <div class="grid-item" onclick="showPage('vpn-page')">
-                    <h3><i class="fas fa-key"></i> VPN Key ဝယ်ယူရန်</h3>
+                    <h3><i class="fas fa-key"></i> V2 Ray Key ဝယ်ယူရန်</h3>
                 </div>
                 <div class="grid-item" onclick="showPage('data-page')">
                     <h3><i class="fas fa-wifi"></i> Data Plan ဝယ်ယူရန်</h3>
@@ -43,14 +43,14 @@
         </div>
 
         <div id="vpn-page" class="page-section hidden">
-            <h2 class="section-title">VPN Key ဝယ်ယူရန်</h2>
+            <h2 class="section-title">V2ray Key ဝယ်ယူရန်</h2>
             <div class="choice-buttons">
                 <button class="choice-btn" onclick="showAppDownload()">New User</button>
                 <button class="choice-btn" onclick="showForm('vpn-renew-user')">Key သက်တမ်းတိုး</button>
             </div>
             
-            <div id="vpn-app-download" class="order-form hidden">
-                <h3>VPN App ရယူရန်</h3>
+            <div id="v2ray-app-download" class="order-form hidden">
+                <h3>V2ray App ရယူရန်</h3>
                 <p>အသုံးပြုမည့် ဖုန်းအမျိုးအစားအလိုက် ရွေးချယ်နိုင်ပါသည်</p>
                 <div class="app-buttons">
                     <a href="https://play.google.com/store/apps/details?id=com.v2ray.ang" target="_blank" class="app-btn">
@@ -62,8 +62,8 @@
                 </div>
                 <p class="copy-link-text">သို့မဟုတ်၊ အောက်ပါ link ကို copy ယူ၍ download ရယူနိုင်သည်</p>
                 <div class="copy-link-container">
-                    <input type="text" id="vpn-download-link" value="https://example.com/vpn-app" readonly>
-                    <button onclick="copyLink('vpn-download-link')"><i class="fas fa-copy"></i> Copy</button>
+                    <input type="text" id="v2ray-download-link" value="https://example.com/vpn-app" readonly>
+                    <button onclick="copyLink('v2ray-download-link')"><i class="fas fa-copy"></i> Copy</button>
                 </div>
                 <button class="next-btn" onclick="showForm('vpn-new-user')">ဆက်လက်ဝယ်ယူရန်</button>
             </div>
